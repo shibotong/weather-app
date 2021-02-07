@@ -1,6 +1,6 @@
 import React from 'react';
 
-const API = 966bdcfb-d389-4f07-8805-a9dc6e9baa68
+const API = '966bdcfb-d389-4f07-8805-a9dc6e9baa68'
 
 const LeftContainer = () => {
     return (<div className='left-box'>
