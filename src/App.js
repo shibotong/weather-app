@@ -1,12 +1,10 @@
 import React from 'react';
 
-import LeftContainer from './components/LeftContainer';
-import RightContainer from './components/RightContainer'
+import CityLocation from './components/CityLocation'
 
 const App = () => {
     return (<div className='container'>
-        <LeftContainer />
-        <RightContainer />
+        <CityLocation />
     </div>)
 }
 
