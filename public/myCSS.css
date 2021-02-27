@@ -15,10 +15,6 @@
     z-index: -1;
 }
 
-.content {
-    /* margin-top: -100vh; */
-}
-
 .fixed {
     position: fixed;
     z-index:-1;
@@ -168,6 +164,12 @@ li {
     display: flex;
     flex-direction: column;
 }
+
+.weather-icon img {
+    width: 8vw;
+    height: 8vw;
+}
+
 .map-view {
     padding-bottom: 80px;
 }

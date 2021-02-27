@@ -3,7 +3,33 @@ import React from 'react'
 const WeatherDetails = ({ currentData }) => {
 
     const getWindDirection = (degree) => {
-        return degree
+
+        if (degree == 0) {
+            return "N"
+        }
+        if (degree > 0 && degree < 90) {
+            return `NE${degree}°`
+        }
+        if (degree == 90) {
+            return "E"
+        }
+        if (degree > 90 && degree < 180) {
+            return `SE${180 - degree}°`
+        }
+        if (degree == 180) {
+            return "S"
+        }
+        if (degree > 180 && degree < 270) {
+            return `SW${degree - 180}°`
+        }
+        if (degree == 270) {
+            return "W"
+        }
+        if (degree > 270 && degree < 360) {
+            return `NW${360 - degree}°`
+        }
+
+        return "--"
     }
 
     return (

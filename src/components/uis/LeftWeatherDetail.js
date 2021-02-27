@@ -20,7 +20,7 @@ const LeftWeatherDetail = ({ weatherData }) => {
         <div className="weather-detail-container">
                 <div className="weather-detail">
                     <div className="weather-degree">
-                        <h1>{weatherData.current.weather.tp}°</h1>
+                        <h1>{weatherData.current.weather.tp}°C</h1>
                     </div>
                     <div className="city-details">
                         <div>
@@ -29,7 +29,7 @@ const LeftWeatherDetail = ({ weatherData }) => {
             
                     </div>
                     <div className="weather-icon">
-                        <img src={iconURL + getIcon(weatherData.current.weather.ic) + '.png'} alt={weatherData.current.weather.ic} width="50%"/>
+                        <img src={iconURL + getIcon(weatherData.current.weather.ic) + '.png'} alt={weatherData.current.weather.ic}/>
                     </div>
                 </div>
             </div>
