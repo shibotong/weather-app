@@ -1,18 +1,46 @@
 import React from 'react'
 
 import AirVisual from './api/AirVisual'
-import MainCard from './components/MainCard'
-import DisplayCard from './components/DisplayCard'
+import RightBar from './components/RightBar'
+import LeftContents from './components/LeftContents'
 
-
+const emptyData = {
+    "data":{
+        "city":"--",
+        "state":"--",
+        "country":"--",
+        "location":{
+            "type":"--",
+            "coordinates":[0,0]
+        },
+        "current":{
+            "weather":{
+                "ts":"--",
+                "tp":"--",
+                "pr":"--",
+                "hu":"--",
+                "ws":"--",
+                "wd":"--",
+                "ic":"03d"
+            },
+            "pollution":{
+                "ts":"--",
+                "aqius":"--",
+                "mainus":"--",
+                "aqicn":"--",
+                "maincn":"--"
+            }
+        }
+    }
+};
 
 class App extends React.Component {
 
-    state = { data: undefined }
-    airvisual = new AirVisual()
+    state = { weather: emptyData }
+    
 
     componentDidMount() {
-        //this.getWeatherData('Melbourne', 'victoria', 'Australia')
+        this.getWeatherData('Melbourne', 'victoria', 'Australia')
     }
 
     async getCountryData() {
@@ -20,38 +48,49 @@ class App extends React.Component {
         this.setState({ data: response })
     }
 
-    async getWeatherData(city, state, country) {
-        const response = await this.airvisual.getWeatherData(city, state, country)
-        this.setState({ weather: response })
-        console.log(response)
+    setEmpty() {
+        this.setState({ weather: emptyData })
+    }
+
+    getWeatherData = async (city, state, country) => {
+        // this.setState({ weather: emptyData })
+        const airvisual = new AirVisual()
+        const response = await airvisual.getWeatherData(city, state, country)
+        this.setState({ weather: response.data })
+        this.changebg()
+    }
+
+    changebg() {
+        const weatherIcon = this.state.weather.data.current.weather.ic
+        if (weatherIcon.startsWith("01")) {
+            return "url('./img/sunny.jpg')"
+        }
+        if (weatherIcon.startsWith("02") || weatherIcon.startsWith("03") || weatherIcon.startsWith("04")) {
+            return "url('./img/cloudy.jpg')"
+        }
+        if (weatherIcon.startsWith("09") || weatherIcon.startsWith("10")) {
+            return "url('./img/rainy.jpg')"
+        }
+        if (weatherIcon.startsWith("11")) {
+            return "url('./img/thunder.jpg')"
+        }
+        if (weatherIcon.startsWith("13")) {
+            return "url('./img/snowy.jpg')"
+        }
+        if (weatherIcon.startsWith("50")) {
+            return "url('./img/windy.jpg')"
+        }
     }
 
     render() {
-        // if (this.state.weather) {
-        //     if (this.state.weather.data.status === 'success'){
-                return (<div className='container'>
-                    <div className='main'>
-                        <MainCard />
-                        <div>
-                            <DisplayCard />
-                            <DisplayCard />
-                        </div>
-                        <div>
-                            <DisplayCard />
-                            <DisplayCard />
-                        </div>
-                        <div>
-                            <DisplayCard />
-                            <DisplayCard />
-                        </div>
-                    </div>
-                </div>)
-        //     } else {
-        //         return <div>Loading</div>
-        //     }
-        // } else {
-        //     return <div>Loading</div>
-        // }
+        return (<div className='container' >
+                
+                <div className='container bg' style={{backgroundImage:this.changebg()}}></div>
+                <div className='container content'>
+                        <LeftContents weatherData={this.state.weather.data}/>
+                        <RightBar weatherData={this.state.weather.data} getNewCityData={this.getWeatherData} />
+                </div>
+            </div>)
     }
 }
 
