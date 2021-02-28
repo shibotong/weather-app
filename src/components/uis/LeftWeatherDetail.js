@@ -26,7 +26,6 @@ const LeftWeatherDetail = ({ weatherData }) => {
                         <div>
                             <p className="city-name">{weatherData.city}</p>
                         </div>
-            
                     </div>
                     <div className="weather-icon">
                         <img src={iconURL + getIcon(weatherData.current.weather.ic) + '.png'} alt={weatherData.current.weather.ic}/>

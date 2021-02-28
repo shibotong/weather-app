@@ -3,6 +3,7 @@ import React from 'react';
 import LocationChoices from './uis/LocationChoices';
 import SearchBar from './uis/SearchBar';
 import WeatherDetails from './uis/WeatherDetails';
+import WeatherDetailMobile from './uis/WeatherDetailMobile';
 
 const RightBar = ({ weatherData, getNewCityData }) => {
     return (
@@ -11,6 +12,7 @@ const RightBar = ({ weatherData, getNewCityData }) => {
             <div className='content'>
                 <SearchBar getNewCityData={getNewCityData} />
                 <div className='divider-container'>
+                    <WeatherDetailMobile weatherData={weatherData}/>
                     <LocationChoices getNewCityData={getNewCityData} />
                     <div className="ui inverted divider"></div>
                     <WeatherDetails currentData={weatherData.current} />
