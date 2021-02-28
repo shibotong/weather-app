@@ -184,6 +184,7 @@ li {
 
 .map-view {
     padding-bottom: 80px;
+    height: 30vw;
 }
 /* mobile screen size */
 @media only screen and (min-width: 480px) {
