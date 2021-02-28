@@ -41,12 +41,10 @@ class App extends React.Component {
 
     componentDidMount() {
         this.getWeatherData('Melbourne', 'victoria', 'Australia')
-        if (navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(function(position) {
-                console.log("Latitude is :", position.coords.latitude);
-                console.log("Longitude is :", position.coords.longitude);
-            });
-        }
+        window.navigator.geolocation.getCurrentPosition(
+            position => this.setState({ lat: position.coords.latitude }),
+            err => this.setState({ errorMessage: err.message })
+          );
     }
 
     async getCountryData() {

@@ -7,12 +7,10 @@ class SearchBar extends React.Component {
 
     onInputChange(value) {
         this.setState({ term: value })
-        console.log(value)
     }
 
     onSearchClick(str) {
         const attr = str.split(',')
-        console.log(attr)
         if (attr.length === 3) {
             this.props.getNewCityData(attr[0], attr[1], attr[2])
         }
